@@ -1,15 +1,24 @@
 ---
 name: spec
-description: Turn the current conversation into a spec, then publish it with the `epic` skill — no interview, just synthesis of what you've already discussed.
+description: Turn an idea or existing conversation into a confirmed project spec. Use the `grilling` skill when intent is incomplete, synthesize the agreed context without repeating discovery, then publish with the `epic` skill.
 ---
 
-This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user — just synthesize what you already know.
+Use this skill as the entry point for turning intent into a published spec.
 
 ## Process
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already.
+1. Check whether the spec template below can be filled from confirmed conversation content — things the user said or explicitly agreed to, not your inferences:
 
-2. Write the spec using the template below, then use the `epic` skill to publish it.
+   - **Objective** and **Out of Scope** must be fully covered.
+   - **Technical Decisions** and **Testing Decisions** may carry open items, but only non-blocking ones — an item may stay open only if it does not change the outcome, the scope, or any user story.
+
+2. If a required section needs invention, or an open decision would change what gets built, use the `grilling` skill to close exactly those gaps. Do not write the spec until the user confirms the shared understanding. Do not repeat discovery for sections the conversation already covers.
+
+3. Explore the repo to understand the current state of the codebase, if you haven't already. Facts live in the codebase — look them up rather than asking; only decisions go to the user.
+
+4. Synthesize the confirmed conversation into the template below. Do not invent decisions that weren't made: omit undiscussed implementation details, and record deliberately deferred decisions as deferred so readers know they're open by choice.
+
+5. Use the `epic` skill to publish the completed spec.
 
 <spec-template>
 
