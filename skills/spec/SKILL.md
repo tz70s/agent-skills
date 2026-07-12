@@ -10,13 +10,13 @@ Use this skill as the entry point for turning intent into a published spec.
 1. Check whether the spec template below can be filled from confirmed conversation content — things the user said or explicitly agreed to, not your inferences:
 
    - **Objective** and **Out of Scope** must be fully covered.
-   - **Technical Decisions** and **Testing Decisions** may carry open items, but only non-blocking ones — an item may stay open only if it does not change the outcome, the scope, or any user story.
+   - **Technical Decisions** and **Testing Decisions** need only capture the decisions that were actually made. They may be incomplete, as long as every gap is non-blocking — a decision that would change the outcome, the scope, or any user story is blocking and must be resolved, not left open.
 
 2. If a required section needs invention, or an open decision would change what gets built, use the `grilling` skill to close exactly those gaps. Do not write the spec until the user confirms the shared understanding. Do not repeat discovery for sections the conversation already covers.
 
 3. Explore the repo to understand the current state of the codebase, if you haven't already. Facts live in the codebase — look them up rather than asking; only decisions go to the user.
 
-4. Synthesize the confirmed conversation into the template below. Do not invent decisions that weren't made: omit undiscussed implementation details, and record deliberately deferred decisions as deferred so readers know they're open by choice.
+4. Synthesize the confirmed conversation into the template below. Record only the decisions that were actually made; do not invent decisions.
 
 5. Use the `epic` skill to publish the completed spec.
 
