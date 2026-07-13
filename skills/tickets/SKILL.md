@@ -1,6 +1,6 @@
 ---
 name: tickets
-description: Break a published spec into a set of dependency-aware, tracer-bullet implementation tickets stored in its epic tracker directory. Use after the spec and epic skills when work needs to be decomposed into agent-sized, verifiable slices.
+description: Break a published spec into a set of dependency-aware, tracer-bullet implementation tickets stored in its epic tracker. Use after the spec and epic skills when work needs to be decomposed into agent-sized, verifiable slices.
 ---
 
 # Tickets
@@ -11,7 +11,7 @@ Turn one published spec into a set of vertical-slice tickets, each declaring the
 
 ### 1. Load the spec context
 
-Use the epic skill to locate the target spec and load the tracker context it requires. Read the selected `spec.md` and `state.md` in full. If ticket files already exist, read them before proposing changes.
+Use the epic skill to locate the target spec and load the tracker context it requires. Read the selected spec and its state in full. If tickets already exist, read them before proposing changes.
 
 Do not rewrite or expand the spec. If it lacks a decision required for ticketing, identify the gap and ask the user rather than inventing it.
 
@@ -49,13 +49,7 @@ Ask whether the granularity and blocking edges are correct and whether any ticke
 
 ### 5. Publish the tickets
 
-Write one file per approved ticket under the selected spec's `tickets/` directory:
-
-```text
-.epics/<epic>/specs/<spec>/tickets/<NN>-<ticket-slug>.md
-```
-
-Number tickets from `01` in dependency order, blockers first. Never combine all tickets into one file and never overwrite existing tickets without explicit approval.
+Publish one entry per approved ticket through the epic skill's backend representation. Number tickets from `01` in dependency order, blockers first. Never combine all tickets into one entry and never overwrite existing tickets without explicit approval.
 
 Use this template:
 
@@ -76,6 +70,6 @@ Use this template:
 
 Set `ready-for-agent` only when every blocker is complete; otherwise set `blocked`. The current frontier is every ticket whose blockers are complete.
 
-Update the selected spec's `state.md` without discarding existing history. Record that ticketing is complete and list the current frontier.
+Update the selected spec's state without discarding existing history. Record that ticketing is complete and list the current frontier.
 
 Do not include specific file paths or implementation code in tickets, because they become outdated quickly. You may include a minimal schema, interface, state machine, or type shape when it is the clearest way to capture an agreed technical contract. Keep it decision-focused and omit working implementation details.

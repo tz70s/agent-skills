@@ -13,7 +13,7 @@ Drive one spec from ready tickets to a submitted PR. Tickets are commits on the 
 
 The user must name the target spec; if none is given, ask rather than guessing. Use the epic skill to locate it and load the tracker context it requires.
 
-Read the spec's `state.md` and ticket statuses first. Never redo a completed ticket; continue from the current frontier.
+Read the spec's state and ticket statuses first. Never redo a completed ticket; continue from the current frontier.
 
 Do not start a spec until the previous spec in the epic is at least `in-review`.
 
@@ -24,7 +24,7 @@ Each spec has one branch: `<epic-slug>/<NNN>-<spec-slug>`. Create it if missing:
 - Base it on the previous spec's branch while that spec's PR is open.
 - Base it on the default branch otherwise.
 
-Set the spec's `state.md` status to `in-progress` when its first ticket starts.
+Set the spec's status to `in-progress` when its first ticket starts.
 
 ### 3. Implement tickets until the spec is done
 
@@ -33,15 +33,15 @@ Loop over the spec's tickets, one at a time:
 1. Take the lowest-numbered `ready-for-agent` ticket. Never start a ticket whose blockers are incomplete.
 2. Implement exactly what the ticket describes. Follow the repository's conventions for structure, style, testing, and commands. Do not expand scope beyond the ticket.
 3. Verify every acceptance criterion and run the repository's test suite. Commit to the spec branch.
-4. Checkpoint the tracker before the next ticket: mark the ticket complete, check off its acceptance criteria, flip newly unblocked tickets to `ready-for-agent`, and record the frontier in `state.md`.
+4. Checkpoint the tracker before the next ticket: mark the ticket complete, check off its acceptance criteria, flip newly unblocked tickets to `ready-for-agent`, and record the frontier in the spec's state.
 
 ### 4. Submit the spec PR
 
 When the last ticket completes, open one PR for the whole spec:
 
 - Base per the stacking rule in step 2.
-- Synthesize the PR description from `spec.md`.
-- Record the PR URL in `state.md` and set the status to `in-review`.
+- Synthesize the PR description from the spec.
+- Record the PR link in the spec's state and set the status to `in-review`.
 
 ## Stop and surface instead of proceeding
 

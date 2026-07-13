@@ -1,70 +1,36 @@
 ---
 name: epic
-description: "Manage a repository-local `.epics` project tracker: initialize its conventions, add a spec to an existing or new epic, and load the context required to work safely. Use when setting up the tracker, organizing specs, or publishing a completed spec."
+description: "Manage the project's epic tracker — epics composed of ordered specs with tickets and execution state — backed by a local `.epics/` directory or GitHub Issues. Use when setting up the tracker, organizing specs, publishing a completed spec, or loading tracker context."
 ---
 
 # Epic
 
-Manage `.epics/` as the project's durable, Git-tracked workspace for initiatives and their ordered specs.
+Manage the project tracker: long-lived epics composed of specs numbered in delivery order, each carrying its content, tickets, and execution state.
 
-## 1. Set up the tracker
+## Backend
 
-If `.epics/README.md` does not exist, create it with this convention:
+`.epics/README.md` declares the tracker backend. Read the matching reference before any tracker operation:
 
-```text
-.epics/
-└── <epic-slug>/
-    └── specs/
-        ├── 001-<spec-slug>/
-        │   ├── spec.md
-        │   ├── tickets/
-        │   └── state.md
-        ├── 002-<spec-slug>/
-        │   ├── spec.md
-        │   ├── tickets/
-        │   └── state.md
-        └── ...
-```
+- `references/local.md` — files under `.epics/` (default)
+- `references/github.md` — GitHub Issues and labels
 
-Document these rules in `.epics/README.md`:
+If `.epics/README.md` does not exist, ask the user which backend to use, then follow that reference's setup section.
+
+## Conventions (all backends)
 
 - Use concise kebab-case slugs.
 - Treat each epic as a long-lived initiative composed of multiple specs.
-- Number spec directories in intended delivery order with three-digit prefixes.
-- Keep each spec, its derived tickets, and its execution state together.
-- A spec directory adopted from an existing PR may hold only `state.md`.
-- Preserve existing project-specific conventions when updating the tracker README.
+- Number specs in intended delivery order with three-digit prefixes.
+- Spec status lifecycle: `planned` → `in-progress` → `in-review` → `merged`.
+- Use an existing epic when the spec advances the same overarching outcome; create a new epic when it has a distinct outcome, user group, or delivery lifecycle. Ask the user if ambiguous.
+- Never overwrite an existing spec or renumber existing specs without explicit user approval.
+- Preserve existing project-specific conventions when updating `.epics/README.md`.
 
-Do not create example epics during setup.
-
-## 2. Add a spec
-
-Decide whether the spec belongs to an existing epic:
-
-- Use an existing epic when the spec advances the same overarching outcome.
-- Create a new epic when it has a distinct outcome, user group, or delivery lifecycle.
-- If the choice remains ambiguous after reading the required context, ask the user.
-
-For an existing epic, choose the next three-digit sequence after its highest numbered spec. For a new epic, create a concise epic slug and begin with `001`.
-
-Create:
-
-```text
-.epics/<epic-slug>/specs/<sequence>-<spec-slug>/
-├── spec.md
-├── tickets/
-└── state.md
-```
-
-Write the supplied specification to `spec.md`, create `tickets/`, and initialize `state.md` with a `planned` status. Do not create ticket files until work has been broken down.
-
-## 3. Required reading
+## Required reading
 
 Before changing the tracker:
 
-1. Read `.epics/README.md`.
-2. Inspect the epic directory names and ordered spec directories.
-3. When using an existing epic, read every `spec.md` and `state.md` in that epic to understand its scope, sequence, progress, and possible overlap.
-4. Read ticket files only when modifying existing planned or active work; they are not required merely to add a new spec.
-
-Never overwrite an existing spec or renumber existing spec directories without explicit user approval.
+1. Read `.epics/README.md` and the backend reference.
+2. Inspect the epics and their ordered specs.
+3. When using an existing epic, read every spec and its state in that epic to understand scope, sequence, progress, and possible overlap.
+4. Read tickets only when modifying existing planned or active work; they are not required merely to add a new spec.
