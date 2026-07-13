@@ -29,7 +29,7 @@ When the user requests babysitting PRs that are not in the tracker, adopt them f
 
 Append what was done to each touched spec's `state.md` history so the next pass does not repeat work.
 
-When no specs remain `in-review`, report that there is nothing left to babysit and stop the loop or schedule driving this skill.
+When no specs remain `in-review`, report that there is nothing left to babysit and stop the loop or schedule driving this skill. Repeated no-op passes while PRs await review action are expected — do not stop the loop for them.
 
 ## Stop and surface instead of proceeding
 
