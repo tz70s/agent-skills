@@ -13,6 +13,8 @@ Keep an epic's stacked spec PRs healthy. One invocation is one stateless pass; r
 
 Use the epic skill to locate the epics and load the tracker context it requires. Gather every spec with status `in-review` and a PR URL in its `state.md` — for the named epic, or across all epics when none is named. Process them in spec-sequence order, lowest first, so restacking cascades correctly.
 
+When the user requests babysitting PRs that are not in the tracker, adopt them first: create a spec directory for each under the epic the user names (or a new epic), with only a `state.md` recording status `in-review` and the PR URL. No `spec.md` or tickets are required. Derive adopted PRs' stack order from their base branches.
+
 ### 2. Handle each PR
 
 **Merged.** Set the spec's `state.md` status to `merged`. Rebase the next spec's branch onto the default branch and retarget its PR base.
@@ -27,9 +29,13 @@ Use the epic skill to locate the epics and load the tracker context it requires.
 
 Append what was done to each touched spec's `state.md` history so the next pass does not repeat work.
 
+When no specs remain `in-review`, report that there is nothing left to babysit and stop the loop or schedule driving this skill.
+
 ## Stop and surface instead of proceeding
 
 - A review comment requests a scope or design change.
 - A rebase conflict is semantic rather than textual.
 - CI fails for reasons unrelated to the PR.
 - The stack diverged from the tracker (a PR merged out of order, closed, or retargeted by hand).
+
+When escalating, also stop the loop or schedule driving this skill so no pass runs while the user resolves it.

@@ -32,6 +32,7 @@ Document these rules in `.epics/README.md`:
 - Treat each epic as a long-lived initiative composed of multiple specs.
 - Number spec directories in intended delivery order with three-digit prefixes.
 - Keep each spec, its derived tickets, and its execution state together.
+- A spec directory adopted from an existing PR may hold only `state.md`.
 - Preserve existing project-specific conventions when updating the tracker README.
 
 Do not create example epics during setup.
