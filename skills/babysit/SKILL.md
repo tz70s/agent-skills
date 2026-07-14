@@ -23,6 +23,8 @@ When the user requests babysitting PRs that are not in the tracker, adopt them f
 
 **Review comments.** Address implementation-level comments with commits on the spec branch and reply on the thread. Escalate comments that change scope or contradict a spec decision to the user; do not act on them.
 
+**Commit history.** Prefer a clean history aligned with the ticket split: apply review fixes as fixup commits and squash them into their ticket's commit when rebasing.
+
 **Base moved.** Rebase the spec branch onto its updated base and force-push per the repository's conventions. Force-push stacked branches one by one, in stack order. Resolve textual conflicts; surface semantic ones.
 
 ### 3. Record the pass

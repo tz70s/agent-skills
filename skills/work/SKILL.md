@@ -1,6 +1,6 @@
 ---
 name: work
-description: Implement a spec's tickets end to end on the spec's branch, checkpointing the tracker per ticket, and submit the spec's PR when the last ticket completes. Resumes interrupted runs from tracker state. Use for autonomous implementation after tickets are published.
+description: Implement a spec's tickets end to end on the spec's branch, checkpointing the tracker per ticket, then offer local review before submitting the spec's draft PR. Resumes interrupted runs from tracker state. Use for autonomous implementation after tickets are published.
 ---
 
 # Work
@@ -37,7 +37,9 @@ Loop over the spec's tickets, one at a time:
 
 ### 4. Submit the spec PR
 
-When the last ticket completes, open one PR for the whole spec:
+When the last ticket completes, ask whether to submit the PR or review locally first. Default to local review; do not push until the user asks.
+
+When submitting, open one draft PR for the whole spec:
 
 - Base per the stacking rule in step 2.
 - Synthesize the PR description from the spec.
