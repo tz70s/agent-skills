@@ -11,10 +11,14 @@ Manage the project tracker: long-lived epics composed of specs numbered in deliv
 
 `.epics/README.md` declares the tracker backend. Read the matching reference before any tracker operation:
 
-- `references/local.md` — files under `.epics/` (default)
+- `references/local.md` — files under `.epics/`
 - `references/github.md` — GitHub Issues and labels
 
-If `.epics/README.md` does not exist, ask the user which backend to use, then follow that reference's setup section.
+Resolve the backend in this order:
+
+1. The backend `.epics/README.md` declares.
+2. `local`, when `.epics/README.md` exists but declares no backend.
+3. When `.epics/README.md` does not exist, ask the user, then follow the chosen reference's setup section. Never pick a backend unasked.
 
 ## Conventions (all backends)
 
