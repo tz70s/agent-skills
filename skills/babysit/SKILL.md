@@ -17,15 +17,13 @@ When the user requests babysitting PRs that are not in the tracker, adopt them f
 
 ### 2. Handle each PR
 
-**Merged.** Set the spec's status to `merged`. Rebase the next spec's branch onto the default branch and retarget its PR base.
+Walk these steps in order for every PR. Skip a step only when its check comes back clean — never leave one unchecked.
 
-**CI failing.** Fix failures caused by this PR's changes. Report pre-existing or unrelated failures and leave them.
-
-**Review comments.** Address implementation-level comments with commits on the spec branch and reply on the thread. Escalate comments that change scope or contradict a spec decision to the user; do not act on them.
-
-**Commit history.** Prefer a clean history aligned with the ticket split: apply review fixes with `git commit --fixup <ticket commit>` and fold them in with `git rebase --autosquash` when rebasing. Do not rebuild the branch with cherry-pick and `git reset --hard`.
-
-**Base moved.** Rebase the spec branch onto its updated base and force-push per the repository's conventions. Force-push stacked branches one by one, in stack order. Resolve textual conflicts; surface semantic ones.
+1. **Merged?** If merged: set the spec's status to `merged`, rebase the next spec's branch onto the default branch, retarget its PR base, and move to the next PR.
+2. **Review comments.** Address implementation-level comments with `git commit --fixup <ticket commit>` on the spec branch and reply on the thread; step 4 auto-squashes them. Escalate comments that change scope or contradict a spec decision to the user; do not act on them.
+3. **CI.** Fix failures caused by this PR's changes, also as fixup commits. Report pre-existing or unrelated failures and leave them.
+4. **Rebase.** When the base branch has advanced, the platform reports the PR unmergeable, or fixup commits were added: rebase onto the current base with `git rebase --autosquash`, keeping history aligned with the ticket split. Never rebuild the branch with cherry-pick and `git reset --hard`. Resolve a conflict when the overlap is mechanical or one side clearly wins; surface a conflict that requires choosing between intents — do not guess.
+5. **Verify and push.** When any step changed the branch, rerun the repository's test suite, then push with `git push --force-with-lease` — one stacked branch at a time, in stack order.
 
 ### 3. Record the pass
 
@@ -36,7 +34,7 @@ When no specs remain `in-review`, report that there is nothing left to babysit a
 ## Stop and surface instead of proceeding
 
 - A review comment requests a scope or design change.
-- A rebase conflict is semantic rather than textual.
+- A rebase conflict requires choosing between intents.
 - CI fails for reasons unrelated to the PR.
 - The stack diverged from the tracker (a PR merged out of order, closed, or retargeted by hand).
 
