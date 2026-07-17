@@ -15,9 +15,9 @@ Drive one spec through the pipeline autonomously. Collect what only the user can
 
 3. Run a self-grilling session: walk the design tree as the `grilling` skill prescribes, but answer each question yourself with your recommended answer. Record the decisions so the spec and its PR carry them for review.
 
-4. Run the pipeline with gates self-answered:
-   - `spec` — the self-grilling session satisfies its grilling gate.
-   - `tickets` — review and approve the breakdown yourself.
-   - `work` — submit the draft PR without asking.
+4. Run the pipeline skills in order, each with its gate self-answered:
+   - the `spec` skill — the self-grilling session satisfies its grilling gate.
+   - the `tickets` skill — review and approve the breakdown yourself.
+   - the `work` skill — submit the draft PR without asking.
 
 5. Schedule the recurring `babysit` driver at the agreed cadence. Its escalation rules still apply — autonomy ends where babysit stops the loop and surfaces.
