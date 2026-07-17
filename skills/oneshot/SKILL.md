@@ -1,15 +1,21 @@
 ---
 name: oneshot
-description: Drive one spec end to end — spec, tickets, work, then schedule recurring babysit passes for its PR. Use when the user wants the whole pipeline from an idea or discussion in one go.
+description: Run the whole pipeline autonomously for one spec — collect required inputs upfront, self-grill to settle the design, then spec, tickets, work, and a scheduled babysit without further user input. Use when the user wants an idea driven end to end by the agent alone.
 ---
 
 # Oneshot
 
-Chain the pipeline skills for one spec. Each stage's own rules and gates apply unchanged; this skill adds no shortcuts.
+Drive one spec through the pipeline autonomously. Collect what only the user can decide upfront; after that, replace the stages' interactive gates with your best judgment.
 
 ## Process
 
-1. Run the `spec` skill to confirm intent and publish the spec.
-2. Run the `tickets` skill and get the breakdown approved.
-3. Run the `work` skill on the published spec.
-4. Once the PR is submitted, start a recurring driver for the `babysit` skill — a loop or scheduled agent — at a cadence agreed with the user (default 30 minutes). If the user defers submission for local review, stop here and note that babysit can be scheduled after submission.
+1. Collect required inputs in one round before starting: the tracker backend when none is declared, anything essential missing from the idea, and the babysit cadence (default 30 minutes). Do not ask again after this point.
+
+2. Run a self-grilling session: walk the design tree as the `grilling` skill prescribes, but answer each question yourself with your recommended answer. Record the decisions so the spec and its PR carry them for review.
+
+3. Run the pipeline with gates self-answered:
+   - `spec` — the self-grilling session satisfies its grilling gate.
+   - `tickets` — review and approve the breakdown yourself.
+   - `work` — submit the draft PR without asking.
+
+4. Schedule the recurring `babysit` driver at the agreed cadence. Its escalation rules still apply — autonomy ends where babysit stops the loop and surfaces.
